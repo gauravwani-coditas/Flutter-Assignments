@@ -1,13 +1,11 @@
-
-
 abstract class Service {
   void checkEngineCondition();
 }
 
-enum fuelType {petrol,diesel}
+enum fuelType { petrol, diesel }
 
 class Engine implements Service {
-  fuelType fuel ;
+  fuelType fuel;
   int horsePower = 0;
   int efficiency = 0;
 
@@ -51,33 +49,29 @@ class CarEngine extends Engine {
   //   print("Engine stopped !");
   // }
 
+  factory CarEngine.xuv300(fuelType fuel) {
+    return CarEngine(fuel, 3750, 60, 4, 1500, "SUV");
+  }
+
+  factory CarEngine.xuv500(fuelType fuel) {
+    return CarEngine(fuel, 4750, 70, 6, 2000, "SUV");
+  }
+
+  factory CarEngine.xuv700(fuelType fuel) {
+    return CarEngine(fuel, 5750, 80, 8, 2500, "SUV");
+  }
+
   void checkEngineCondition() {
-    if(super.efficiency == "fuelType.petrol"){
+    if (super.efficiency == "fuelType.petrol") {
       print("Good");
-    }
-    else{
+    } else {
       print("Bad");
     }
-   
   }
 
   void displayDetails() {
     print(
         "Model - Car Engine \nFuel Type : ${fuel}, Horse Power : ${horsePower}, Efficiency : ${efficiency}, number of cylinders : ${numberOfCylinders}, cc : ${cc} and model : ${model} ");
-  }
-}
-
-class Factory {
-  static CarEngine xuv300(fuelType fuel) {
-    return CarEngine(fuel, 3750, 60, 4, 1500, "SUV");
-  }
-
-  static CarEngine xuv500(fuelType fuel) {
-    return CarEngine(fuel, 4750, 70, 6, 2000, "SUV");
-  }
-
-  static CarEngine xuv700(fuelType fuel) {
-    return CarEngine(fuel, 5750, 80, 8, 2500, "SUV");
   }
 }
 
@@ -116,10 +110,9 @@ class SuperCarEngine extends CarEngine {
 }
 
 extension convertToSuperCarExtension on CarEngine {
-
   SuperCarEngine convertToSuperCar() {
-
-    SuperCarEngine superCarEngine = new SuperCarEngine(fuel,1200,96,6,1400,'Porche Cayman',true,['Acceleration','Airbags'],300);
+    SuperCarEngine superCarEngine = new SuperCarEngine(fuel, 1200, 96, 6, 1400,
+        'Porche Cayman', true, ['Acceleration', 'Airbags'], 300);
     return superCarEngine;
   }
 }
@@ -128,18 +121,19 @@ void main() {
   Engine ferrariEngine = new Engine(fuelType.petrol, 4000, 900);
   ferrariEngine.displayDetails();
 
-  CarEngine mercedesEngine = new CarEngine(fuelType.diesel, 1200, 90, 6, 1200, "Benz");
+  CarEngine mercedesEngine =
+      new CarEngine(fuelType.diesel, 1200, 90, 6, 1200, "Benz");
   mercedesEngine.start();
   mercedesEngine.stop();
   mercedesEngine.displayDetails();
 
-  CarEngine xuv300Petrol = Factory.xuv300(fuelType.petrol);
-  CarEngine xuv500Petrol = Factory.xuv500(fuelType.petrol);
-  CarEngine xuv700Petrol = Factory.xuv700(fuelType.petrol);
+  CarEngine xuv300Petrol = CarEngine.xuv300(fuelType.petrol);
+  CarEngine xuv500Petrol = CarEngine.xuv500(fuelType.petrol);
+  CarEngine xuv700Petrol = CarEngine.xuv700(fuelType.petrol);
 
-  CarEngine xuv300Diesel = Factory.xuv300(fuelType.diesel);
-  CarEngine xuv500Diesel = Factory.xuv500(fuelType.diesel);
-  CarEngine xuv700Diesel = Factory.xuv700(fuelType.diesel);
+  CarEngine xuv300Diesel = CarEngine.xuv300(fuelType.diesel);
+  CarEngine xuv500Diesel = CarEngine.xuv500(fuelType.diesel);
+  CarEngine xuv700Diesel = CarEngine.xuv700(fuelType.diesel);
 
   xuv300Petrol.displayDetails();
   xuv500Petrol.displayDetails();
@@ -157,14 +151,14 @@ void main() {
   truckEngine.displayDetails();
 
   //
-  SuperCarEngine superCarEngine = new SuperCarEngine(fuelType.petrol, 900, 95, 12,
-      2000, "Super Car", true, ["Acceleration", "Airbags"], 300);
+  SuperCarEngine superCarEngine = new SuperCarEngine(fuelType.petrol, 900, 95,
+      12, 2000, "Super Car", true, ["Acceleration", "Airbags"], 300);
   superCarEngine.displayDetails();
 
   //
-  CarEngine xuv500Petrol2 = Factory.xuv500(fuelType.petrol);
+  CarEngine xuv500Petrol2 = CarEngine.xuv500(fuelType.petrol);
   xuv500Petrol2.displayDetails();
-  
+
   xuv500Petrol2 = xuv500Petrol2.convertToSuperCar();
   xuv500Petrol2.displayDetails();
 }
