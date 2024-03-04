@@ -62,7 +62,9 @@ class CarEngine extends Engine {
   }
 
   void checkEngineCondition() {
-    if (super.efficiency == "fuelType.petrol") {
+
+    print(super.fuel);
+    if (super.fuel == "fuelType.petrol") {
       print("Good");
     } else {
       print("Bad");
